@@ -14,4 +14,20 @@ ReactDOM.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+if( "serviceWorker" in navigator ) {
+  window.addEventListener("load", ()=> {
+    navigator.serviceWorker.register('/sw.js').then( res => {
+      console.log("Succesfully registered a service worker");
+    }).catch( e => {
+      console.log("No Service Worker Available")
+    })
+  })
+}
+
+if(Worker && indexedDB) {
+    const worker = new Worker("w.js");
+    worker.postMessage("Start working")
+    worker.onmessage = (payload) => {
+      console.log(payload)
+    }
+}
