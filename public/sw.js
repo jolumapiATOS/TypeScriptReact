@@ -1,4 +1,4 @@
-const staticResources = 'static-caches-v1'
+const staticResources = 'static-caches-v2'
 const fetchedResources = [
     '/',
     '/index.html',

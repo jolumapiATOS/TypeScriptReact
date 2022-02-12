@@ -8,23 +8,29 @@ import './App.css';
 import CreateEntry from './components/Entry';
 import Entries from './components/Entries';
 import { useState } from 'react';
+import LandingComponent from './components/LandingPage';
+import SignUp from './components/SignUp';
 
 
 function App() {
-  const  [online, setOnline] = useState('false')
-  
-  setInterval(() => {
+  const  [online, setOnline] = useState('Offline')
+
+  setInterval(()=>{
     if(navigator.onLine) {
-      setOnline('Online')
-    } else {
+      setOnline("Online")
+    }else {
       setOnline("Offline")
     }
-  }, 4000)
+  }, 1000)
+  
+
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar online={online} />
         <Routes>
+          <Route path='/SignUp' element={ <SignUp/> } />
+          <Route path='/' element={ <LandingComponent/> }   />
           <Route path='/entry' element={ <CreateEntry/> } />
           <Route path='/posts' element={ <MainContainer/>  }  />
           <Route path='/entries' element={ <Entries />  }  /> 
